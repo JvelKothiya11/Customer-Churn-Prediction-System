@@ -1,0 +1,5 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Treat Jupyter notebooks as binary (prevents Git from changing line endings)
+*.ipynb binary
