@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  churn-prediction-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: customer-churn-prediction-service:latest
+    container_name: customer_churn_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - THRESHOLD=0.35
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
